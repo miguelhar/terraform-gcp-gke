@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-python@v3
       - name: Install tflint
         run: >-
-          curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+          curl -sSfL https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
       - uses: pre-commit/action@v2.0.3
         with:
           extra_args: terraform_tflint --all-files
@@ -64,7 +64,7 @@ jobs:
       - uses: actions/setup-python@v3
       - name: Instal tfsec
         run: >-
-          curl -sL "https://github.com/$(curl -sL https://github.com/aquasecurity/tfsec/releases/latest | grep -o -E "/.+?_linux_amd64.tar.gz")" > tfsec.tar.gz &&
+          curl -sSfLL "https://github.com/$(curl -sSfLL https://github.com/aquasecurity/tfsec/releases/latest | grep -o -E "/.+?_linux_amd64.tar.gz")" > tfsec.tar.gz &&
           tar -xf tfsec.tar.gz tfsec && rm tfsec.tar.gz && install tfsec /usr/local/bin && rm tfsec
       - name: Run tfsec scan
         uses: pre-commit/action@v2.0.3
@@ -79,7 +79,7 @@ jobs:
       - uses: actions/setup-python@v3
       - name: Install terrascan
         run: >-
-          curl -sL "$(curl -s https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz &&
+          curl -sSfLL "$(curl -sSfL https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz &&
           tar -xf terrascan.tar.gz terrascan && rm terrascan.tar.gz && install terrascan /usr/local/bin && rm terrascan
       - name: Run Terrascan
         uses: pre-commit/action@v2.0.3
